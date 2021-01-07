@@ -2,11 +2,12 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
 import { Text, View } from 'react-native';
+import Favorite from '../components/Favorite';
 
-export default function ShopScreen() {
+export default function FavoriteScreen() {
   return (
     <View style={styles.container}>
-      <Text>Shop Screen</Text>
+       <Favorite />
     </View>
   );
 }

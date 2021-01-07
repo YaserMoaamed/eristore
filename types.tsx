@@ -16,6 +16,10 @@ export type ShopParamList = {
   ShopScreen: undefined;
 };
 
+export type ExploreParamList = {
+  ExploreScreen: undefined;
+}
+
 export type TabTwoParamList = {
   TabTwoScreen: undefined;
 };

@@ -3,10 +3,10 @@ import { StyleSheet } from 'react-native';
 
 import { Text, View } from 'react-native';
 
-export default function ShopScreen() {
+export default function AccountScreen() {
   return (
     <View style={styles.container}>
-      <Text>Shop Screen</Text>
+      <Text>Account Screen</Text>
     </View>
   );
 }

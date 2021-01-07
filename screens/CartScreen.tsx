@@ -2,11 +2,13 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
 import { Text, View } from 'react-native';
+import Cart from '../components/Cart';
+import Search from '../components/Search';
 
-export default function ShopScreen() {
+export default function CartScreen() {
   return (
     <View style={styles.container}>
-      <Text>Shop Screen</Text>
+       <Cart />
     </View>
   );
 }
