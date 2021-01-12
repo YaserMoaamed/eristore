@@ -1,23 +1,13 @@
-import {
-  MaterialIcons,
-  MaterialCommunityIcons,
-  Entypo
-} from '@expo/vector-icons';
-
-import { Header} from 'react-native-elements'
-
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-//import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
+
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import ShopScreen from '../screens/ShopScreen';
-import CartScreen from '../screens/CartScreen';
-import AccountScreen from '../screens/AccountScreen'
-import ExploreScreen from '../screens/ExploreScreen';
-import FavoriteScreen from '../screens/FavoriteScreen';
-
-import { BottomTabParamList, ExploreParamList } from '../types';
+import TabOneScreen from '../screens/TabOneScreen';
+import TabTwoScreen from '../screens/TabTwoScreen';
+import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -26,51 +16,58 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Shop"
+      initialRouteName="TabOne"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="Shop"
-        component={ShopScreen}
+        name="TabOne"
+        component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) =>
-            <Entypo name="shop" size={24} color={color} />,
-          
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="Explore"
-        component={ExploreScreen}
+        name="TabTwo"
+        component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) =>
-            <MaterialIcons name="explore" size={24} color={color}
-            />,
-        }}
-       />
-      <BottomTab.Screen
-        name="Cart"
-        component={CartScreen}
-        options={{
-          tabBarIcon: ({ color }) =>
-            <MaterialCommunityIcons name="cart" size={24} color={color} />,
-        }}
-      />
-
-      <BottomTab.Screen
-        name="Favorite"
-        component={FavoriteScreen}
-        options={{
-          tabBarIcon: ({ color }) =>
-            <MaterialIcons name="favorite-border" size={24} color={color} />
-        }}
-      />
-      <BottomTab.Screen
-        name="Account"
-        component={AccountScreen}
-        options={{
-          tabBarIcon: ({ color }) =>
-            <MaterialCommunityIcons name="account-tie" size={24} color={color} />
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
     </BottomTab.Navigator>
+  );
+}
+
+// You can explore the built-in icon families and icons on the web at:
+// https://icons.expo.fyi/
+function TabBarIcon(props: { name: string; color: string }) {
+  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+}
+
+// Each tab has its own navigation stack, you can read more about this pattern here:
+// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
+const TabOneStack = createStackNavigator<TabOneParamList>();
+
+function TabOneNavigator() {
+  return (
+    <TabOneStack.Navigator>
+      <TabOneStack.Screen
+        name="TabOneScreen"
+        component={TabOneScreen}
+        options={{ headerTitle: 'Tab One Title' }}
+      />
+    </TabOneStack.Navigator>
+  );
+}
+
+const TabTwoStack = createStackNavigator<TabTwoParamList>();
+
+function TabTwoNavigator() {
+  return (
+    <TabTwoStack.Navigator>
+      <TabTwoStack.Screen
+        name="TabTwoScreen"
+        component={TabTwoScreen}
+        options={{ headerTitle: 'Tab Two Title' }}
+      />
+    </TabTwoStack.Navigator>
   );
 }
